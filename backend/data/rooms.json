@@ -1,0 +1,332 @@
+[
+  {
+    "_id": "room_101",
+    "roomNumber": 101,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_102",
+    "roomNumber": 102,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_103",
+    "roomNumber": 103,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_104",
+    "roomNumber": 104,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": true,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-13T03:52:18.601Z"
+  },
+  {
+    "_id": "room_105",
+    "roomNumber": 105,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_106",
+    "roomNumber": 106,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_107",
+    "roomNumber": 107,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_108",
+    "roomNumber": 108,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_109",
+    "roomNumber": 109,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_110",
+    "roomNumber": 110,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_111",
+    "roomNumber": 111,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_112",
+    "roomNumber": 112,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_113",
+    "roomNumber": 113,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_114",
+    "roomNumber": 114,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-09T15:02:14.107Z"
+  },
+  {
+    "_id": "room_115",
+    "roomNumber": 115,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_116",
+    "roomNumber": 116,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_117",
+    "roomNumber": 117,
+    "floor": 1,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_201",
+    "roomNumber": 201,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_202",
+    "roomNumber": 202,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_203",
+    "roomNumber": 203,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_204",
+    "roomNumber": 204,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_205",
+    "roomNumber": 205,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_206",
+    "roomNumber": 206,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_207",
+    "roomNumber": 207,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_208",
+    "roomNumber": 208,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_209",
+    "roomNumber": 209,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_210",
+    "roomNumber": 210,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_211",
+    "roomNumber": 211,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_212",
+    "roomNumber": 212,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_213",
+    "roomNumber": 213,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_214",
+    "roomNumber": 214,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_215",
+    "roomNumber": 215,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  },
+  {
+    "_id": "room_216",
+    "roomNumber": 216,
+    "floor": 2,
+    "category": "AC Executive Suite",
+    "pricePerNight": 1200,
+    "isMaintenance": false,
+    "createdAt": "2026-11-03T13:12:38.535Z",
+    "updatedAt": "2026-11-03T13:12:38.535Z"
+  }
+]

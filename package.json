@@ -1,0 +1,24 @@
+{
+  "name": "bit-mesra-guesthouse",
+  "version": "1.0.0",
+  "description": "BIT Mesra Guest House Booking Portal",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm run start",
+    "build:frontend": "cd frontend && npm run build",
+    "dev": "npx concurrently --kill-others \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+  },
+  "keywords": [
+    "bit-mesra",
+    "guest-house",
+    "booking-portal",
+    "react",
+    "vite",
+    "tailwind",
+    "express",
+    "mongoose"
+  ],
+  "author": "BIT Mesra",
+  "license": "ISC"
+}

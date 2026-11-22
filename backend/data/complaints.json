@@ -1,0 +1,47 @@
+[
+  {
+    "roomNumber": 105,
+    "guestName": "Guest",
+    "bookingId": "",
+    "issueDescription": "The AC in room 105 is not cooling properly",
+    "category": "Air Conditioning",
+    "priority": "MEDIUM",
+    "complaintId": "CMP-2026-197",
+    "status": "OPEN",
+    "adminNotes": "",
+    "resolvedAt": null,
+    "createdAt": "2026-11-07T17:04:31.105Z",
+    "updatedAt": "2026-11-07T17:04:31.105Z",
+    "_id": "complaint_1794071071106"
+  },
+  {
+    "_id": "complaint_1",
+    "complaintId": "CMP-2026-101",
+    "roomNumber": 114,
+    "guestName": "Rahul Verma",
+    "bookingId": "BIT-GH-1001",
+    "category": "Air Conditioning",
+    "issueDescription": "AC temperature control display not responding, cooling is weak.",
+    "status": "IN_PROGRESS",
+    "priority": "HIGH",
+    "adminNotes": "Electrician dispatched to check refrigerant gas and PCB.",
+    "resolvedAt": null,
+    "createdAt": "2026-11-07T12:04:31.105Z",
+    "updatedAt": "2026-11-07T17:04:31.105Z"
+  },
+  {
+    "_id": "complaint_2",
+    "complaintId": "CMP-2026-102",
+    "roomNumber": 205,
+    "guestName": "Rajesh Gupta",
+    "bookingId": "BIT-GH-1002",
+    "category": "Wi-Fi / Internet",
+    "issueDescription": "Wi-Fi signal strength drops frequently in the corner workspace.",
+    "status": "RESOLVED",
+    "priority": "MEDIUM",
+    "adminNotes": "Replaced floor router access point. Signal tested at 85 Mbps.",
+    "resolvedAt": "2026-11-07T17:04:31.105Z",
+    "createdAt": "2026-11-06T17:04:31.105Z",
+    "updatedAt": "2026-11-07T17:04:31.105Z"
+  }
+]
