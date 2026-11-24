@@ -33,6 +33,7 @@ const tools = {
     const bookings = await StorageService.getAllBookings();
 
     const availableRooms = rooms.filter((room) => {
+      if (room.isRestricted) return false; // Never show restricted university rooms for public bookings (Part 1 & Part 11)
       if (room.isMaintenance) return false;
       if (floor && room.floor !== Number(floor)) return false;
 
@@ -48,24 +49,29 @@ const tools = {
     });
 
     const nights = calculateNights(checkIn, checkOut);
-    const ratePerNight = 1200;
-    const totalAmount = nights * ratePerNight;
 
     return {
       success: true,
       checkIn,
       checkOut,
       nights,
-      ratePerNight,
-      totalAmount,
       totalAvailable: availableRooms.length,
-      rooms: availableRooms.map((r) => ({
-        roomNumber: r.roomNumber,
-        floor: r.floor,
-        category: r.category || 'AC Executive Suite',
-        pricePerNight: r.pricePerNight || 1200,
-        amenities: ['Air Conditioning', 'High-Speed Wi-Fi', 'Smart TV', 'Geyser Hot Water', 'Work Desk'],
-      })),
+      rooms: availableRooms.map((r) => {
+        const base = nights * (r.pricePerNight || 1200);
+        const gst = Math.round(base * 0.05 * 100) / 100;
+        return {
+          roomNumber: r.roomNumber,
+          floor: r.floor,
+          category: r.category,
+          pricePerNight: r.pricePerNight,
+          priceDouble: r.priceDouble || r.pricePerNight,
+          baseTotal: base,
+          gst5Percent: gst,
+          totalWithGST: base + gst,
+          maxOccupancy: 2,
+          amenities: ['Air Conditioning', 'High-Speed Wi-Fi', 'Smart TV', 'Geyser Hot Water', 'Work Desk'],
+        };
+      }),
     };
   },
 
@@ -95,21 +101,40 @@ const tools = {
   },
 
   // 3. get_room_price
-  async get_room_price({ checkIn, checkOut, roomNumber }) {
+  async get_room_price({ checkIn, checkOut, roomNumber, guestCount = 2 }) {
     const nights = checkIn && checkOut ? calculateNights(checkIn, checkOut) : 1;
-    const rate = 1200;
+    let rate = 1200;
+    let category = 'Room';
+
+    if (roomNumber) {
+      const room = await StorageService.getRoomByNumber(roomNumber);
+      if (room) {
+        rate = Number(guestCount) === 1 && room.pricePerNight ? room.pricePerNight : (room.priceDouble || room.pricePerNight || 1200);
+        category = room.category;
+      }
+    }
+
+    const baseAmount = nights * rate;
+    const gstRate = 0.05;
+    const gstAmount = Math.round(baseAmount * gstRate * 100) / 100;
+    const totalAmount = Math.round((baseAmount + gstAmount) * 100) / 100;
+
     return {
       success: true,
+      roomNumber: roomNumber || null,
+      category,
       ratePerNight: rate,
       nights,
-      totalAmount: nights * rate,
-      roomNumber: roomNumber || null,
+      baseAmount,
+      gstRate: '5%',
+      gstAmount,
+      totalAmount,
       currency: 'INR (₹)',
     };
   },
 
-  // 4. create_booking
-  async create_booking({ guestType, guestDetails, roomNumber, checkIn, checkOut, instantConfirm = true }) {
+  // 4. create_booking (Part 11 Compliant)
+  async create_booking({ guestType, guestDetails, roomNumber, checkIn, checkOut, guestCount = 2, instantConfirm = true }) {
     if (!guestType || !guestDetails || !roomNumber || !checkIn || !checkOut) {
       return {
         success: false,
@@ -122,11 +147,37 @@ const tools = {
       return { success: false, message: `Room ${roomNumber} does not exist.` };
     }
 
+    // Part 1 & 11: Enforce room restrictions
+    if (room.isRestricted) {
+      return {
+        success: false,
+        message: `Room ${roomNumber} is permanently restricted (${room.restrictionLabel || 'Staff/University Guest Reserved'}) and cannot be booked publicly.`,
+      };
+    }
+
     if (room.isMaintenance) {
       return { success: false, message: `Room ${roomNumber} is currently under maintenance.` };
     }
 
-    // Double check conflict
+    // Part 7: Maximum 7 nights duration check
+    const nights = calculateNights(checkIn, checkOut);
+    if (nights > 7) {
+      return {
+        success: false,
+        message: 'Maximum stay duration allowed is 7 nights. Please adjust your check-out date.',
+      };
+    }
+
+    // Part 9: Maximum 2 guests per room occupancy limit
+    const totalGuests = Number(guestCount) || Number(guestDetails?.guestCount) || 1;
+    if (totalGuests > 2) {
+      return {
+        success: false,
+        message: 'Maximum room occupancy is 2 guests per suite.',
+      };
+    }
+
+    // Revalidate backend availability immediately before booking
     const bookings = await StorageService.getAllBookings();
     const isConflict = bookings.some((b) => {
       if (b.roomNumber !== Number(roomNumber) || b.status === 'REJECTED' || b.status === 'CANCELLED') {
@@ -142,17 +193,40 @@ const tools = {
       };
     }
 
-    const nights = calculateNights(checkIn, checkOut);
-    const amount = nights * (room.pricePerNight || 1200);
+    // Backend financial calculations with 5% GST
+    const ratePerNight = room.pricePerNight || 1200;
+    const roomBaseAmount = nights * ratePerNight;
+    const gstRate = 0.05;
+    const gstAmount = Math.round(roomBaseAmount * gstRate * 100) / 100;
+    const totalAmount = Math.round((roomBaseAmount + gstAmount) * 100) / 100;
+
+    const rawPhone = String(guestDetails.phone || '').trim();
+    const referencePhone = rawPhone.replace(/\D/g, '').slice(-10);
 
     const booking = await StorageService.createBooking({
       guestType,
-      guestDetails,
+      guestDetails: {
+        ...guestDetails,
+        guestCount: totalGuests,
+        phone: rawPhone,
+      },
+      referencePhone,
       roomNumber: Number(roomNumber),
+      roomCategory: room.category,
+      floor: room.floor,
       checkIn,
       checkOut,
       nights,
-      amount,
+      guestCount: totalGuests,
+      priceBreakdown: {
+        ratePerNight,
+        nights,
+        roomBaseAmount,
+        gstRate,
+        gstAmount,
+        totalAmount,
+      },
+      amount: totalAmount,
       status: instantConfirm ? 'APPROVED' : 'PENDING_APPROVAL',
       approvalNotes: instantConfirm ? 'Fast-tracked booking generated via AI Booking Agent.' : '',
     });
@@ -161,7 +235,8 @@ const tools = {
       success: true,
       bookingId: booking.bookingId,
       booking,
-      message: `Reservation created successfully with Booking ID: ${booking.bookingId}`,
+      referencePhone,
+      message: `Reservation created successfully! Internal Booking ID: ${booking.bookingId}. Registered Reference: ${referencePhone}. Total Amount: ₹${totalAmount} (incl. 5% GST).`,
     };
   },
 

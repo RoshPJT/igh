@@ -9,7 +9,17 @@ const {
   cancelBooking,
   modifyBooking,
   payBooking,
+  requestOtp,
+  verifyOtpAndGetBookings,
+  getDiningCapacity,
+  reserveDining,
 } = require('../controllers/bookingController');
+
+// Dedicated sub-routes before :id
+router.post('/request-otp', requestOtp);
+router.post('/verify-otp', verifyOtpAndGetBookings);
+router.get('/dining/capacity', getDiningCapacity);
+router.post('/dining/reserve', reserveDining);
 
 router.post('/', createBooking);
 router.get('/', getAllBookings);

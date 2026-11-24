@@ -79,13 +79,16 @@ export default function BookingForm({
   const [error, setError] = useState('');
   const [successBooking, setSuccessBooking] = useState(null);
 
-  // Nights and amount calculation
+  // Nights and amount calculation with dynamic category pricing and 5% GST (Part 10)
   const nights = useMemo(() => {
     return calculateNights(checkIn, checkOut);
   }, [checkIn, checkOut]);
 
-  const tariffPerNight = 1200;
-  const totalAmount = nights * tariffPerNight;
+  const tariffPerNight = selectedRoom?.pricePerNight || 1200;
+  const roomBaseAmount = nights * tariffPerNight;
+  const gstRate = 0.05; // 5% GST on room charges
+  const gstAmount = Math.round(roomBaseAmount * gstRate * 100) / 100;
+  const totalAmount = Math.round((roomBaseAmount + gstAmount) * 100) / 100;
 
   // Demo auto-fill presets for quick testing
   const autofillDemo = (type) => {
@@ -132,7 +135,17 @@ export default function BookingForm({
     setError('');
 
     if (!selectedRoom) {
-      setError('Please select a room from the Floor Map before submitting.');
+      setError('Please select an available room from the Floor Map before submitting.');
+      return;
+    }
+
+    if (selectedRoom.isRestricted) {
+      setError(`Room ${selectedRoom.roomNumber} is permanently restricted (${selectedRoom.restrictionLabel || 'Staff/University Guest Reserved'}) and cannot be booked publicly.`);
+      return;
+    }
+
+    if (nights > 7) {
+      setError('Maximum stay duration allowed is 7 nights. Please adjust your check-out date.');
       return;
     }
 

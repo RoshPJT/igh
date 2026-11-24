@@ -171,6 +171,56 @@ export const api = {
     return data;
   },
 
+  // Mobile OTP & Reference Verification (Part 6)
+  async requestBookingOtp(phone) {
+    const res = await fetch(`${API_BASE}/bookings/request-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'Failed to request OTP');
+    }
+    return data;
+  },
+
+  async verifyBookingOtp(phone, otp) {
+    const res = await fetch(`${API_BASE}/bookings/verify-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, otp }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'OTP verification failed');
+    }
+    return data;
+  },
+
+  // Dining Capacity & Reservation (Part 8)
+  async getDiningCapacity(date) {
+    const query = date ? `?date=${encodeURIComponent(date)}` : '';
+    const res = await fetch(`${API_BASE}/bookings/dining/capacity${query}`);
+    if (!res.ok) {
+      throw new Error('Failed to fetch dining capacity');
+    }
+    return await res.json();
+  },
+
+  async reserveDining(reservationData) {
+    const res = await fetch(`${API_BASE}/bookings/dining/reserve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reservationData),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'Failed to reserve dining session');
+    }
+    return data;
+  },
+
   // AI Conversational Agent
   async sendChatMessage(message, sessionId = 'default_session', conversationHistory = [], userProfile = null) {
     const res = await fetch(`${API_BASE}/chat`, {

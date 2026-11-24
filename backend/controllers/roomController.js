@@ -1,6 +1,6 @@
 const { StorageService } = require('../config/db');
 
-// Helper to check date overlap
+// Helper to check date overlap (Exclusive checkout: checkout at 12 PM allows same-day checkin)
 function datesOverlap(startA, endA, startB, endB) {
   const sA = new Date(startA).getTime();
   const eA = new Date(endA).getTime();
@@ -13,23 +13,35 @@ function datesOverlap(startA, endA, startB, endB) {
 // GET /api/rooms
 async function getRooms(req, res) {
   try {
-    const { checkIn, checkOut } = req.query;
+    const { checkIn, checkOut, forAdmin } = req.query;
     const rooms = await StorageService.getAllRooms();
     const bookings = await StorageService.getAllBookings();
 
-    // Map each room with dynamic status
+    // Map each room with dynamic status matching the required 4 distinct states:
+    // AVAILABLE, BOOKED, RESERVED, UNDER MAINTENANCE
     const roomsWithStatus = rooms.map((room) => {
+      // 1. Permanently Restricted University Rooms
+      if (room.isRestricted) {
+        return {
+          ...room,
+          status: 'RESERVED',
+          activeBooking: null,
+          restrictionNotice: room.restrictionLabel || 'Reserved for Official University Accommodation',
+        };
+      }
+
+      // 2. Administrative Under Maintenance
       if (room.isMaintenance) {
         return {
           ...room,
-          status: 'Maintenance',
+          status: 'UNDER MAINTENANCE',
           activeBooking: null,
         };
       }
 
-      // Filter bookings for this room
+      // Filter active bookings for this room
       const roomBookings = bookings.filter(
-        (b) => b.roomNumber === room.roomNumber && b.status !== 'REJECTED'
+        (b) => b.roomNumber === room.roomNumber && b.status !== 'REJECTED' && b.status !== 'CANCELLED'
       );
 
       let matchedBooking = null;
@@ -40,20 +52,15 @@ async function getRooms(req, res) {
           datesOverlap(checkIn, checkOut, b.checkIn, b.checkOut)
         );
       } else {
-        // General active booking check (any active or upcoming/pending booking)
-        matchedBooking = roomBookings[0] || null;
+        // General active booking check
+        const today = new Date().toISOString().split('T')[0];
+        matchedBooking = roomBookings.find((b) => b.checkOut >= today) || roomBookings[0] || null;
       }
 
-      let status = 'Available';
+      // 3. Booked / Available
+      let status = 'AVAILABLE';
       if (matchedBooking) {
-        if (matchedBooking.status === 'PAID') {
-          status = 'Booked';
-        } else if (
-          matchedBooking.status === 'PENDING_APPROVAL' ||
-          matchedBooking.status === 'APPROVED'
-        ) {
-          status = 'Pending Approval';
-        }
+        status = 'BOOKED';
       }
 
       return {

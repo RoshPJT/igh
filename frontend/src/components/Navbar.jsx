@@ -17,12 +17,14 @@ import bitLogo from '../assets/bit_mesra_logo.png';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Home', hiLabel: 'होम' },
-  { path: '/tariff', label: 'Tariff', hiLabel: 'किराया' },
+  { path: '/about', label: 'About Us', hiLabel: 'हमारे बारे में' },
   { path: '/rooms', label: 'Rooms', hiLabel: 'कमरे' },
+  { path: '/availability', label: 'Room Availability', hiLabel: 'कमरों की उपलब्धता' },
+  { path: '/tariff', label: 'Tariff', hiLabel: 'किराया' },
   { path: '/dining', label: 'Dining', hiLabel: 'भोजन' },
   { path: '/facilities', label: 'Facilities', hiLabel: 'सुविधाएं' },
   { path: '/gallery', label: 'Gallery', hiLabel: 'गैलरी' },
-  { path: '/things-to-do', label: 'Things to do', hiLabel: 'आसपास के दर्शनीय स्थल' },
+  { path: '/travel', label: 'Travel & Transport', hiLabel: 'यात्रा एवं परिवहन' },
   { path: '/booking', label: 'Booking', hiLabel: 'आरक्षण' },
   { path: '/contact', label: 'Contact Us', hiLabel: 'संपर्क करें' },
 ];
@@ -177,14 +179,14 @@ export default function Navbar({
               </div>
             </div>
 
-            {/* Desktop Navigation Menu (9 items) */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-1.5">
+            {/* Desktop Navigation Menu (11 items) */}
+            <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1">
               {NAV_ITEMS.map((item) => (
                 <NavLink
                   key={item.path}
                   to={item.path}
                   className={({ isActive }) =>
-                    `px-3 py-2 rounded-lg text-xs font-bold transition-all duration-200 uppercase tracking-wider whitespace-nowrap ${
+                    `px-2 2xl:px-2.5 py-1.5 rounded-lg text-[11px] 2xl:text-xs font-bold transition-all duration-200 uppercase tracking-wider whitespace-nowrap ${
                       isActive
                         ? 'bg-[#7A2438] text-white shadow-md border-b-2 border-[#C6A15B]'
                         : 'text-stone-300 hover:text-white hover:bg-stone-800'
@@ -198,14 +200,14 @@ export default function Navbar({
               {/* Prominent Quick Book Button */}
               <Link
                 to="/booking"
-                className="ml-2 px-3.5 py-2 rounded-lg bg-[#7A2438] hover:bg-[#661C2E] text-white border border-[#C6A15B] text-xs font-black uppercase tracking-wider shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5"
+                className="ml-1 px-3 py-1.5 rounded-lg bg-[#7A2438] hover:bg-[#661C2E] text-white border border-[#C6A15B] text-[11px] 2xl:text-xs font-black uppercase tracking-wider shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 whitespace-nowrap"
               >
                 {isHindi ? 'कमरा बुक करें' : 'Book Now'}
               </Link>
             </nav>
 
             {/* Mobile Hamburger Button */}
-            <div className="flex items-center space-x-2 lg:hidden">
+            <div className="flex items-center space-x-2 xl:hidden">
               <Link
                 to="/booking"
                 className="px-2.5 py-1.5 rounded-lg bg-[#7A2438] text-white text-xs font-bold uppercase tracking-wider"
@@ -227,7 +229,7 @@ export default function Navbar({
 
         {/* 3. Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#1A1A1A] border-t border-stone-800 px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-2">
+          <div className="xl:hidden bg-[#1A1A1A] border-t border-stone-800 px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-2">
             <div className="grid grid-cols-1 gap-1">
               {NAV_ITEMS.map((item) => (
                 <NavLink

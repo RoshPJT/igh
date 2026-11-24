@@ -14,11 +14,39 @@ const roomSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      default: 'AC Executive Suite',
+      required: true,
+      enum: [
+        'Small Room',
+        'Small Double-Bedded Regular Room',
+        'Large Double-Bedded Room',
+        'University Guest Suite',
+      ],
+      default: 'Large Double-Bedded Room',
     },
     pricePerNight: {
       type: Number,
       default: 1200,
+    },
+    priceDouble: {
+      type: Number,
+      default: 1200,
+    },
+    maxOccupancy: {
+      type: Number,
+      default: 2,
+    },
+    isRestricted: {
+      type: Boolean,
+      default: false,
+    },
+    restrictionType: {
+      type: String,
+      enum: ['NONE', 'STAFF', 'UNIVERSITY_GUEST'],
+      default: 'NONE',
+    },
+    restrictionLabel: {
+      type: String,
+      default: '',
     },
     isMaintenance: {
       type: Boolean,

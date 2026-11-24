@@ -22,9 +22,18 @@ function datesOverlap(startA, endA, startB, endB) {
 // POST /api/bookings - Create new booking
 async function createBooking(req, res) {
   try {
-    const { guestType, guestDetails, roomNumber, checkIn, checkOut, instantConfirm } = req.body;
+    const {
+      guestType,
+      guestDetails,
+      roomNumber,
+      checkIn,
+      checkOut,
+      guestCount = 2,
+      instantConfirm,
+      diningOption,
+    } = req.body;
 
-    // Validation
+    // 1. Validation of required fields
     if (!guestType || !guestDetails || !roomNumber || !checkIn || !checkOut) {
       return res.status(400).json({
         success: false,
@@ -32,22 +41,54 @@ async function createBooking(req, res) {
       });
     }
 
+    // 2. Room lookup and restriction checks (Part 1 & Part 2)
     const room = await StorageService.getRoomByNumber(roomNumber);
     if (!room) {
       return res.status(404).json({
         success: false,
-        message: `Room ${roomNumber} does not exist`,
+        message: `Room ${roomNumber} does not exist in the guest house.`,
+      });
+    }
+
+    if (room.isRestricted) {
+      return res.status(403).json({
+        success: false,
+        message: `Room ${roomNumber} is permanently restricted (${room.restrictionLabel || 'Staff/University Guest Reserved'}) and cannot be booked publicly.`,
       });
     }
 
     if (room.isMaintenance) {
       return res.status(400).json({
         success: false,
-        message: `Room ${roomNumber} is currently under maintenance and cannot be booked`,
+        message: `Room ${roomNumber} is currently under maintenance and unavailable for booking.`,
       });
     }
 
-    // Check for existing overlapping active bookings for this room
+    // 3. Maximum 7 nights duration check (Part 7)
+    const nights = calculateNights(checkIn, checkOut);
+    if (nights > 7) {
+      return res.status(400).json({
+        success: false,
+        message: 'Maximum stay duration allowed is 7 nights. Please adjust your check-out date.',
+      });
+    }
+    if (nights < 1) {
+      return res.status(400).json({
+        success: false,
+        message: 'Check-out date must be strictly after Check-in date.',
+      });
+    }
+
+    // 4. Maximum 2 guests per room occupancy limit (Part 9)
+    const totalGuests = Number(guestCount) || Number(guestDetails?.guestCount) || 1;
+    if (totalGuests > 2) {
+      return res.status(400).json({
+        success: false,
+        message: 'Maximum room occupancy is 2 guests per suite. Additional rooms must be booked for more guests.',
+      });
+    }
+
+    // 5. Backend Room Availability Revalidation (Exclusive Checkout: 12 PM turnaround)
     const allBookings = await StorageService.getAllBookings();
     const isConflict = allBookings.some((b) => {
       if (b.roomNumber !== Number(roomNumber) || b.status === 'REJECTED' || b.status === 'CANCELLED') {
@@ -59,24 +100,49 @@ async function createBooking(req, res) {
     if (isConflict) {
       return res.status(409).json({
         success: false,
-        message: `Room ${roomNumber} is already booked or reserved for the selected dates. Please choose another room or change dates.`,
+        message: `Room ${roomNumber} was just booked or is unavailable for the selected dates (${checkIn} to ${checkOut}). Please select another room.`,
       });
     }
 
-    const nights = calculateNights(checkIn, checkOut);
+    // 6. Backend Financial Calculation & 5% GST (Part 10)
+    // Rate depends strictly on actual room category from database
     const pricePerNight = room.pricePerNight || 1200;
-    const amount = nights * pricePerNight;
+    const ratePerNight = pricePerNight;
+    const roomBaseAmount = nights * pricePerNight;
+    const gstRate = 0.05; // 5% GST on room charges
+    const gstAmount = Math.round(roomBaseAmount * gstRate * 100) / 100;
+    const totalAmount = Math.round((roomBaseAmount + gstAmount) * 100) / 100;
+
+    // 7. Visible Booking Reference using Registered 10-Digit Mobile Number (Part 6)
+    const rawPhone = String(guestDetails.phone || '').trim();
+    const referencePhone = rawPhone.replace(/\D/g, '').slice(-10);
 
     const initialStatus = instantConfirm ? 'APPROVED' : 'PENDING_APPROVAL';
 
     const newBooking = await StorageService.createBooking({
       guestType,
-      guestDetails,
+      guestDetails: {
+        ...guestDetails,
+        guestCount: totalGuests,
+        phone: rawPhone,
+      },
+      referencePhone, // Visible Reference for guest lookup
       roomNumber: Number(roomNumber),
+      roomCategory: room.category,
+      floor: room.floor,
       checkIn,
       checkOut,
       nights,
-      amount,
+      guestCount: totalGuests,
+      priceBreakdown: {
+        ratePerNight,
+        nights,
+        roomBaseAmount,
+        gstRate,
+        gstAmount,
+        totalAmount,
+      },
+      amount: totalAmount,
       status: initialStatus,
       approvalNotes: instantConfirm ? 'Fast-tracked booking generated via AI Booking Agent.' : '',
     });
@@ -87,6 +153,7 @@ async function createBooking(req, res) {
         ? 'Booking reserved successfully! You can now proceed to payment.'
         : 'Booking request submitted successfully. Pending Warden approval.',
       data: newBooking,
+      referencePhone,
     });
   } catch (error) {
     console.error('Error creating booking:', error);
@@ -331,6 +398,75 @@ async function payBooking(req, res) {
   }
 }
 
+// POST /api/bookings/request-otp - Request OTP for mobile booking lookup (Part 6)
+async function requestOtp(req, res) {
+  try {
+    const { phone } = req.body;
+    if (!phone) {
+      return res.status(400).json({ success: false, message: 'Mobile number is required' });
+    }
+
+    const result = StorageService.requestBookingOtp(phone);
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+}
+
+// POST /api/bookings/verify-otp - Verify OTP and retrieve bookings (Part 6)
+async function verifyOtpAndGetBookings(req, res) {
+  try {
+    const { phone, otp } = req.body;
+    if (!phone || !otp) {
+      return res.status(400).json({ success: false, message: 'Mobile number and OTP are required' });
+    }
+
+    const isValid = StorageService.verifyBookingOtp(phone, otp);
+    if (!isValid) {
+      return res.status(401).json({ success: false, message: 'Invalid or expired OTP. Please try again.' });
+    }
+
+    const bookings = await StorageService.getBookingsByPhone(phone);
+    res.json({
+      success: true,
+      message: 'Mobile number verified successfully.',
+      count: bookings.length,
+      data: bookings,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+// GET /api/bookings/dining - Get dining capacity for date (Part 8)
+async function getDiningCapacity(req, res) {
+  try {
+    const { date } = req.query;
+    const capacity = await StorageService.getDiningCapacity(date);
+    res.json({ success: true, data: capacity });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+// POST /api/bookings/dining/reserve - Reserve dining session (Part 8: max 56)
+async function reserveDining(req, res) {
+  try {
+    const { date, mealSession, guests, bookingId, guestName, diet } = req.body;
+    const result = await StorageService.reserveDining({
+      date,
+      mealSession,
+      guests,
+      bookingId,
+      guestName,
+      diet,
+    });
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+}
+
 module.exports = {
   createBooking,
   getAllBookings,
@@ -340,4 +476,8 @@ module.exports = {
   cancelBooking,
   modifyBooking,
   payBooking,
+  requestOtp,
+  verifyOtpAndGetBookings,
+  getDiningCapacity,
+  reserveDining,
 };

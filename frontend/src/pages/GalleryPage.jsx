@@ -16,138 +16,161 @@ import bitLogo from '../assets/bit_mesra_logo.png';
 const CATEGORIES = [
   'All',
   'Guest House Exterior',
-  'Guest House Interior',
-  'Rooms',
-  'Bathrooms',
-  'Dining Area',
-  'Conference and Meeting Rooms',
-  'Reception and Lobby',
-  'BIT Mesra Campus',
-  'Gardens and Surroundings',
+  'Guest Rooms & Suites',
+  'Dining Hall',
+  'Reception & Lobby',
+  'Inner Spaces & Lounges',
+  'Campus Gardens & Greenery',
 ];
 
 const GALLERY_PHOTOS = [
-  // Exterior
+  // Exterior & Building
   {
     url: guesthouseImg,
-    title: 'BIT Mesra Guest House Main Façade',
+    title: 'BIT Mesra Guest House Portico & Entrance',
     category: 'Guest House Exterior',
-    description: 'The front entrance and portico of the official BIT Mesra Guest House with green lawns and visitor parking.',
+    description: 'The front entrance and portico of the official BIT Mesra Guest House with visitor parking and lawn surrounds.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=1000&q=80',
-    title: 'Guest House Courtyard Architecture',
+    url: '/photos/greenery/IMG_20261123_153902.jpg',
+    title: 'Guest House Front Lawns & Pathway',
     category: 'Guest House Exterior',
-    description: 'Quiet central residential courtyard surrounded by 2 floors of Executive AC Suites.',
+    description: 'Paved tree-lined access walkway leading up to the Guest House portico.',
   },
-  // Interior
+
+  // Rooms & Suites (From user photoshoot)
   {
-    url: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80',
-    title: 'Executive Corridor & Lounge Area',
-    category: 'Guest House Interior',
-    description: 'Well-lit corridors, carpeted lounge seating, and quiet academic ambiance on Floor 1.',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80',
-    title: 'Guest House Foyer & Staircase',
-    category: 'Guest House Interior',
-    description: 'Polished granite staircases and accessibility corridors connecting Floor 1 and Floor 2.',
-  },
-  // Rooms
-  {
-    url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80',
-    title: 'Executive Suite Master Bedroom',
-    category: 'Rooms',
-    description: 'King-size spring bed, climate control split AC, 300-thread count linen, and reading lamp.',
+    url: '/photos/large-room/IMG_20261123_152043.jpg',
+    title: 'Large Double-Bedded Room (Master Bedding)',
+    category: 'Guest Rooms & Suites',
+    description: 'Spacious master suite with premium double mattress, split AC, and courtyard greenery views.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80',
-    title: 'Executive Twin Beds Suite',
-    category: 'Rooms',
-    description: 'Dual single beds arrangement ideal for visiting student delegates and alumni colleagues.',
+    url: '/photos/large-room/IMG_20261123_152106.jpg',
+    title: 'Large Double-Bedded Room (Workstation Angle)',
+    category: 'Guest Rooms & Suites',
+    description: 'Ergonomic study desk, reading lamp, and ambient climate control for academic visitors.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1000&q=80',
-    title: 'Study Workstation & Desk',
-    category: 'Rooms',
-    description: 'Dedicated ergonomic work desk with universal power outlets, high-speed Wi-Fi, and natural daylight.',
-  },
-  // Bathrooms
-  {
-    url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80',
-    title: 'Attached Private Bathroom',
-    category: 'Bathrooms',
-    description: 'Clean ceramic tiles, 25L instant electric geyser hot water, large mirror, and sanitization.',
+    url: '/photos/suite/IMG_20261123_152401.jpg',
+    title: 'University Guest Suite (VIP Master Wing)',
+    category: 'Guest Rooms & Suites',
+    description: 'Restricted executive suite reserved for university dignitaries, examiners, and external council guests.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1000&q=80',
-    title: 'Shower & Premium Toiletries',
-    category: 'Bathrooms',
-    description: 'High pressure hot/cold water shower, fresh towels, soaps, and sanitary fittings.',
-  },
-  // Dining Area
-  {
-    url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80',
-    title: 'Guest House Dining Hall',
-    category: 'Dining Area',
-    description: 'Spacious ground-floor dining hall with formal table settings for breakfast, lunch, and dinner.',
+    url: '/photos/suite/IMG_20261123_152523.jpg',
+    title: 'University Guest Suite (Lounge Seating)',
+    category: 'Guest Rooms & Suites',
+    description: 'Plush executive seating and quiet river view windows in the university dignitary suite.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1000&q=80',
-    title: 'Fresh Traditional Campus Thali',
-    category: 'Dining Area',
-    description: 'Nutritious homestyle vegetarian thali prepared daily with seasonal vegetables and basmati rice.',
-  },
-  // Conference and Meeting Rooms
-  {
-    url: 'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?auto=format&fit=crop&w=1000&q=80',
-    title: 'Executive Conference Room',
-    category: 'Conference and Meeting Rooms',
-    description: 'Air-conditioned conference table with executive chairs for academic discussions and examiners.',
+    url: '/photos/regular/IMG_20261123_153147.jpg',
+    title: 'Small Double-Bedded Regular Room',
+    category: 'Guest Rooms & Suites',
+    description: 'Comfortable double bedding, wardrobe, and high-speed Wi-Fi on residential Floor 2.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80',
-    title: 'Academic Delegation Boardroom',
-    category: 'Conference and Meeting Rooms',
-    description: 'Meeting setup with high-speed internet connectivity, whiteboard, and presentation facilities.',
+    url: '/photos/small/IMG_20261123_151839.jpg',
+    title: 'Small Room Accommodation',
+    category: 'Guest Rooms & Suites',
+    description: 'Compact air-conditioned room with attached geyser bathroom for solo researchers.',
   },
-  // Reception and Lobby
+
+  // Dining Area (From user photoshoot)
   {
-    url: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80',
-    title: '24/7 Guest House Reception Desk',
-    category: 'Reception and Lobby',
-    description: 'Welcoming front desk for check-in, key collection, campus guidance, and taxi arrangements.',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80',
-    title: 'Visitor Waiting Lounge',
-    category: 'Reception and Lobby',
-    description: 'Plush sofas and institutional display boards in the ground-floor air-conditioned waiting lobby.',
-  },
-  // BIT Mesra Campus
-  {
-    url: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80',
-    title: 'BIT Mesra Iconic Clock Tower',
-    category: 'BIT Mesra Campus',
-    description: 'The historic Main Academic Building and clock tower, the central architectural landmark of BIT Mesra.',
+    url: '/photos/dinning/IMG_20261123_154038.jpg',
+    title: 'Guest House Dining Hall (Wide Layout)',
+    category: 'Dining Hall',
+    description: 'Formal dining tables and hygienic service counter for resident breakfast, lunch, and dinner.',
   },
   {
-    url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80',
-    title: 'Departmental Complex & Tree Canopy',
-    category: 'BIT Mesra Campus',
-    description: 'Serene tree-lined avenues connecting engineering departments, lecture halls, and laboratories.',
+    url: '/photos/dinning/IMG_20261123_154140.jpg',
+    title: 'Guest House Dining Hall (Table Settings)',
+    category: 'Dining Hall',
+    description: 'Strict 56-seat independent capacity layout ensuring unhurried dining comfort.',
   },
-  // Gardens and Surroundings
+  {
+    url: '/photos/dinning/IMG_20261123_154214.jpg',
+    title: 'Dining Hall Service Counter',
+    category: 'Dining Hall',
+    description: 'Daily freshly prepared vegetarian and non-vegetarian thali service area.',
+  },
+  {
+    url: '/photos/dinning/IMG_20261123_154223.jpg',
+    title: 'Tea & Beverage Service Corner',
+    category: 'Dining Hall',
+    description: 'Morning and evening high-tea counter with freshly brewed tea and refreshments.',
+  },
+
+  // Reception & Lobby (From user photoshoot)
+  {
+    url: '/photos/reception/IMG_20261123_153528.jpg',
+    title: 'Official Guest House Reception & Registration Desk',
+    category: 'Reception & Lobby',
+    description: '24/7 reception desk for guest registration, verification of identity documents, and room key handover.',
+  },
+
+  // Inner Spaces & Corridors (From user photoshoot)
+  {
+    url: '/photos/inner spaces/IMG_20261123_153011.jpg',
+    title: 'Residential Floor Corridor & Foyer',
+    category: 'Inner Spaces & Lounges',
+    description: 'Well-lit central corridor connecting suites with quiet acoustic insulation.',
+  },
+  {
+    url: '/photos/inner spaces/IMG_20261123_153047.jpg',
+    title: 'Floor Corridor & Elevator Access',
+    category: 'Inner Spaces & Lounges',
+    description: 'Polished granite flooring and elevator access linking Floor 1 and Floor 2 suites.',
+  },
+  {
+    url: '/photos/inner spaces/IMG_20261123_153523.jpg',
+    title: 'Waiting Foyer & Lounge Seating',
+    category: 'Inner Spaces & Lounges',
+    description: 'Visitor seating area adjacent to the reception portico.',
+  },
+  {
+    url: '/photos/inner spaces/IMG_20261123_153605.jpg',
+    title: 'Courtyard Stairwell & Window Vista',
+    category: 'Inner Spaces & Lounges',
+    description: 'Natural daylight atrium overlooking campus canopy and flower gardens.',
+  },
+
+  // Campus Gardens & Greenery (From user photoshoot)
+  {
+    url: '/photos/greenery/IMG_20261123_154747.jpg',
+    title: 'Guest House Surrounding Sal Tree Canopy',
+    category: 'Campus Gardens & Greenery',
+    description: 'Lush greenery surrounding the guest house perimeter in the 780-acre Mesra campus.',
+  },
+  {
+    url: '/photos/greenery/IMG_20261123_154802.jpg',
+    title: 'Campus Garden Pathway & Foliage',
+    category: 'Campus Gardens & Greenery',
+    description: 'Serene stone pathway for morning walks along the river bank.',
+  },
+  {
+    url: '/photos/greenery/IMG_20261123_155007.jpg',
+    title: 'Riverfront Greenery & Bamboo Groves',
+    category: 'Campus Gardens & Greenery',
+    description: 'Subarnarekha and Jumar riverbank forest cover near the guest house wing.',
+  },
+  {
+    url: '/photos/greenery/IMG_20261123_155138.jpg',
+    title: 'Landscaped Lawns & Shaded Trees',
+    category: 'Campus Gardens & Greenery',
+    description: 'Tranquil natural setting offering peace and quiet for academic visitors.',
+  },
   {
     url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80',
     title: 'Subarnarekha Riverfront Vista',
-    category: 'Gardens and Surroundings',
+    category: 'Campus Gardens & Greenery',
     description: 'Scenic riverbank scenery along the northern perimeter of the 780-acre BIT Mesra campus.',
   },
   {
     url: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1000&q=80',
     title: 'Guest House Landscaped Lawns',
-    category: 'Gardens and Surroundings',
+    category: 'Campus Gardens & Greenery',
     description: 'Manicured flower beds and shady palm trees in the guest house front garden.',
   },
 ];

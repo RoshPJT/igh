@@ -50,8 +50,8 @@ export default function HeroSection({ t = {} }) {
 
             <p className="text-sm sm:text-base text-[#F6F1E8] max-w-2xl leading-relaxed font-normal">
               {isHindi
-                ? 'बिड़ला प्रौद्योगिकी संस्थान (बीआईटी), मेसरा की आधिकारिक अतिथि आवास सुविधा में आपका स्वागत है। हमारे 780 एकड़ के प्राकृतिक व हरित परिसर में भ्रमणकारी अभिभावकों, पूर्व छात्रों, शोधकर्ताओं और छात्र प्रतिनिधियों के लिए 2 मंजिलों पर 33 वातानुकूलित कार्यकारी सुइट्स उपलब्ध हैं।'
-                : 'Welcome to the official guest house of Birla Institute of Technology, Mesra. Providing 33 fully air-conditioned Executive Suites across 2 residential floors for visiting parents, proud alumni, guest researchers, and conference delegates nestled amidst our serene 780-acre green campus.'}
+                ? 'बिड़ला प्रौद्योगिकी संस्थान (बीआईटी), मेसरा की आधिकारिक अतिथि आवास सुविधा में आपका स्वागत है। हमारे 780 एकड़ के प्राकृतिक व हरित परिसर में भ्रमणकारी अभिभावकों, पूर्व छात्रों, शोधकर्ताओं और प्रतिनिधियों के लिए 2 मंजिलों पर 34 वातानुकूलित सुइट्स (29 सार्वजनिक बुकिंग हेतु उपलब्ध) उपलब्ध हैं।'
+                : 'Welcome to the official guest house of Birla Institute of Technology, Mesra. Providing 34 fully air-conditioned Executive Suites across 2 residential floors (29 available for public booking, 5 university reserved) for visiting parents, proud alumni, guest researchers, and conference delegates nestled amidst our serene 780-acre green campus.'}
             </p>
 
             {/* Quick Action Buttons */}
@@ -65,11 +65,18 @@ export default function HeroSection({ t = {} }) {
               </Link>
 
               <Link
-                to="/rooms"
-                className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-[#C6A15B]/80 font-bold text-xs sm:text-sm uppercase tracking-wider transition backdrop-blur-xs flex items-center space-x-2"
+                to="/availability"
+                className="px-6 py-3 rounded-xl bg-[#7A2438] hover:bg-[#581827] text-white border-2 border-[#C6A15B] font-bold text-xs sm:text-sm uppercase tracking-wider transition shadow-lg flex items-center space-x-2"
               >
-                <span>{isHindi ? 'कमरे एवं सुइट्स देखें' : 'View Rooms & Tariff'}</span>
+                <span>{isHindi ? 'कमरों का तल मानचित्र देखें' : 'View Room Floor Map'}</span>
                 <ChevronRight className="w-4 h-4 text-[#C6A15B]" />
+              </Link>
+
+              <Link
+                to="/rooms"
+                className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-[#C6A15B]/80 font-bold text-xs sm:text-sm uppercase tracking-wider transition backdrop-blur-xs flex items-center space-x-1.5"
+              >
+                <span>{isHindi ? 'कमरे एवं किराया' : 'Suites & Tariff'}</span>
               </Link>
             </div>
 
@@ -78,16 +85,16 @@ export default function HeroSection({ t = {} }) {
               <div className="flex items-center space-x-2.5 bg-black/30 backdrop-blur-md rounded-xl p-3 border border-white/10">
                 <Bed className="w-5 h-5 text-[#C6A15B] flex-shrink-0" />
                 <div>
-                  <div className="text-xs font-bold text-white">33 Executive Suites</div>
-                  <div className="text-[11px] text-[#F6F1E8]">Floor 1 & Floor 2</div>
+                  <div className="text-xs font-bold text-white">34 Executive Suites</div>
+                  <div className="text-[11px] text-[#F6F1E8]">Floor 1 (14) & Floor 2 (20)</div>
                 </div>
               </div>
 
               <div className="flex items-center space-x-2.5 bg-black/30 backdrop-blur-md rounded-xl p-3 border border-white/10">
                 <Award className="w-5 h-5 text-[#C6A15B] flex-shrink-0" />
                 <div>
-                  <div className="text-xs font-bold text-white">₹1,200 / Night</div>
-                  <div className="text-[11px] text-[#F6F1E8]">Flat Institutional Rate</div>
+                  <div className="text-xs font-bold text-white">29 Public Bookable</div>
+                  <div className="text-[11px] text-[#F6F1E8]">5 University Reserved</div>
                 </div>
               </div>
 
@@ -101,7 +108,7 @@ export default function HeroSection({ t = {} }) {
             </div>
           </div>
 
-          {/* Visual Showcase: Real Guest House Building & Foreground YouTube Video */}
+          {/* Visual Showcase: Real Guest House Building & Google Drive / Local MP4 Video Player */}
           <div className="lg:col-span-5">
             <div className="grid grid-cols-2 gap-3.5 relative">
               {/* Card 1: Authentic Guest House Building Photo */}
@@ -123,20 +130,35 @@ export default function HeroSection({ t = {} }) {
                 </div>
               </div>
 
-              {/* Card 2: Foreground YouTube Video Player */}
+              {/* Card 2: Dedicated Guest House Video Player (Supplied by User) */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-[#C6A15B] group bg-black col-span-2 sm:col-span-1 h-64 sm:h-72 flex flex-col">
                 <div className="absolute top-2 left-2 z-10 pointer-events-none flex items-center space-x-1.5 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded-full border border-[#C6A15B]/70 shadow-lg">
                   <span className="w-2 h-2 rounded-full bg-[#C6A15B] animate-pulse" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">Campus Video</span>
+                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">Guest House Video</span>
                 </div>
 
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/hVl74j_xZMo?autoplay=1&mute=1&loop=1&playlist=hVl74j_xZMo&controls=1&modestbranding=1&rel=0&playsinline=1"
-                  title="BIT Mesra Campus Video Tour"
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+                <video
+                  src="/bit_guesthouse_video.mp4"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
+
+                <div className="absolute bottom-2 right-2 z-10">
+                  <a
+                    href="https://drive.google.com/file/d/1IeTI_dLk0b53Z02I3DZQbcz9LSGlqqL2/view?usp=drivesdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-1 rounded bg-black/80 hover:bg-black text-[10px] text-[#C6A15B] font-bold border border-[#C6A15B]/80 flex items-center space-x-1 backdrop-blur-xs transition"
+                    title="Open on Google Drive"
+                  >
+                    <span>Drive HD</span>
+                    <span>↗</span>
+                  </a>
+                </div>
               </div>
 
               {/* Floating Verified Badge */}

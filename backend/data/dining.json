@@ -1,0 +1,226 @@
+{
+  "2026-11-24": {
+    "date": "2026-11-24",
+    "breakfast": {
+      "booked": 15,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 23,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 22,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-25": {
+    "date": "2026-11-25",
+    "breakfast": {
+      "booked": 24,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 23,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 15,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-26": {
+    "date": "2026-11-26",
+    "breakfast": {
+      "booked": 21,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 28,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 18,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-27": {
+    "date": "2026-11-27",
+    "breakfast": {
+      "booked": 18,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 22,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 24,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-28": {
+    "date": "2026-11-28",
+    "breakfast": {
+      "booked": 12,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 24,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 15,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-29": {
+    "date": "2026-11-29",
+    "breakfast": {
+      "booked": 14,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 34,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 22,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-11-30": {
+    "date": "2026-11-30",
+    "breakfast": {
+      "booked": 12,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 25,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 32,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-01": {
+    "date": "2026-12-01",
+    "breakfast": {
+      "booked": 21,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 35,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 24,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-02": {
+    "date": "2026-12-02",
+    "breakfast": {
+      "booked": 14,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 27,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 21,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-03": {
+    "date": "2026-12-03",
+    "breakfast": {
+      "booked": 21,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 35,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 16,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-04": {
+    "date": "2026-12-04",
+    "breakfast": {
+      "booked": 12,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 27,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 19,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-05": {
+    "date": "2026-12-05",
+    "breakfast": {
+      "booked": 13,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 19,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 25,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-06": {
+    "date": "2026-12-06",
+    "breakfast": {
+      "booked": 14,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 32,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 25,
+      "max": 56
+    },
+    "reservations": []
+  },
+  "2026-12-07": {
+    "date": "2026-12-07",
+    "breakfast": {
+      "booked": 22,
+      "max": 56
+    },
+    "lunch": {
+      "booked": 32,
+      "max": 56
+    },
+    "dinner": {
+      "booked": 19,
+      "max": 56
+    },
+    "reservations": []
+  }
+}

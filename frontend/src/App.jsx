@@ -6,12 +6,15 @@ import Footer from './components/Footer';
 
 // Pages
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 import TariffPage from './pages/TariffPage';
 import RoomsPage from './pages/RoomsPage';
+import RoomAvailabilityPage from './pages/RoomAvailabilityPage';
 import DiningPage from './pages/DiningPage';
 import FacilitiesPage from './pages/FacilitiesPage';
 import GalleryPage from './pages/GalleryPage';
 import ThingsToDoPage from './pages/ThingsToDoPage';
+import TravelPage from './pages/TravelPage';
 import BookingPage from './pages/BookingPage';
 import ContactPage from './pages/ContactPage';
 import RegistrarPage from './pages/RegistrarPage';
@@ -316,6 +319,8 @@ export default function App() {
               }
             />
 
+            <Route path="/about" element={<AboutPage t={t} />} />
+
             <Route path="/tariff" element={<TariffPage t={t} />} />
 
             <Route
@@ -337,13 +342,34 @@ export default function App() {
               }
             />
 
+            <Route
+              path="/availability"
+              element={
+                <RoomAvailabilityPage
+                  rooms={rooms}
+                  selectedRoom={selectedRoom}
+                  onSelectRoom={setSelectedRoom}
+                  checkIn={checkIn}
+                  checkOut={checkOut}
+                  onDateChange={handleDateChange}
+                  dateError={dateError}
+                  floorPreference={floorPreference}
+                  onRefreshData={fetchData}
+                  isLoading={isLoading}
+                  t={t}
+                />
+              }
+            />
+
             <Route path="/dining" element={<DiningPage t={t} />} />
 
             <Route path="/facilities" element={<FacilitiesPage t={t} />} />
 
             <Route path="/gallery" element={<GalleryPage t={t} />} />
 
-            <Route path="/things-to-do" element={<ThingsToDoPage t={t} />} />
+            <Route path="/travel" element={<TravelPage t={t} />} />
+
+            <Route path="/things-to-do" element={<TravelPage t={t} />} />
 
             <Route
               path="/booking"

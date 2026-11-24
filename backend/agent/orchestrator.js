@@ -532,7 +532,7 @@ class AgentOrchestrator {
 
         if (avail.totalAvailable === 0) {
           return {
-            reply: `⚠️ I checked our database, and unfortunately all 33 Executive Suites are fully booked for **${session.bookingDraft.checkIn}** to **${session.bookingDraft.checkOut}**.\n\nWould you like to try alternative dates?`,
+            reply: `⚠️ I checked our database, and unfortunately all 29 public rooms are fully booked for **${session.bookingDraft.checkIn}** to **${session.bookingDraft.checkOut}**.\n\nWould you like to try alternative dates?`,
             sessionState: session,
             uiCard: null,
             source: 'orchestrator',
@@ -543,7 +543,7 @@ class AgentOrchestrator {
         const totalAmount = avail.totalAmount;
 
         return {
-          reply: `🏨 I found **${avail.totalAvailable} available AC Executive Suites** for **${session.bookingDraft.checkIn}** to **${session.bookingDraft.checkOut}** (${nights} night${nights > 1 ? 's' : ''} at ₹1,200/night = **₹${totalAmount}**).\n\nPlease select your preferred room below, or tell me your room number:`,
+          reply: `🏨 I found **${avail.totalAvailable} available rooms** for **${session.bookingDraft.checkIn}** to **${session.bookingDraft.checkOut}** (${nights} night${nights > 1 ? 's' : ''}).\n\nPlease select your preferred room below, or tell me your room number:`,
           sessionState: session,
           uiCard: {
             type: 'room_selection',
@@ -609,7 +609,7 @@ class AgentOrchestrator {
     // Branch I: General / Unmatched conversational greeting
     // -------------------------------------------------------------
     return {
-      reply: `Welcome to the **BIT Mesra Guest House AI Receptionist**! 🏛️\n\nI can directly assist you with:\n• **Book a Room:** Entirely through chat without filling forms.\n• **Check Availability:** View open rooms for your dates.\n• **Track or Modify Booking:** Check status with your Booking ID.\n• **Lodge Complaints:** Report AC, plumbing, or Wi-Fi issues.\n• **Facilities & Tariffs:** Flat ₹1,200/night for 33 AC Executive Suites.\n\nHow can I help you today?`,
+      reply: `Welcome to the **BIT Mesra Guest House AI Receptionist**! 🏛️\n\nI can directly assist you with:\n• **Book a Room:** Select from 29 bookable rooms across 2 floors.\n• **Check Availability:** View real-time room availability for your dates.\n• **Track or Modify Booking:** Check status with your registered mobile number or Booking ID.\n• **Lodge Complaints:** Report AC, plumbing, or Wi-Fi issues.\n• **Facilities & Tariffs:** Small Room (₹1,000), Small Double Regular (₹1,200), Large Double (₹1,500) (+5% GST).\n\nHow can I help you today?`,
       sessionState: session,
       uiCard: null,
       source: 'orchestrator',
